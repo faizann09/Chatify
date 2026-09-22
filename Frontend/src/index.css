@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.flex-faizan::webkit-scrollbar{
+    display: none;
+}
