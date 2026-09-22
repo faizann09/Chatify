@@ -11,10 +11,13 @@ app.use(express.json());
 // Setup socket server with CORS
 const io = new Server(server, {
   cors: {
-    origin: "https://chatify1-e482.onrender.com", // ✅ No trailing slash
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5173",
+      "https://chatify-dun-gamma.vercel.app"
+    ],
+    credentials: true
+  }
 });
 
 // ✅ Global in-memory store: userId -> socketId
