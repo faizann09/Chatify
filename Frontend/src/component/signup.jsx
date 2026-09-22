@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../config.js";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ export default function Signup() {
             password: data.password,
             confirmpassword: data.confirmPassword,
         };
-        await axios.post("/api/user/signup", userInfo)
+        await api.post("/api/user/signup", userInfo)
             .then((response) => {
                 console.log(response.data);
                 if (response.data) {
@@ -157,4 +157,3 @@ export default function Signup() {
         </>
     );
 }
-

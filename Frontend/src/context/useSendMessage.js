@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useConversation from "../stateManage/useConversation.js";
 import { useSocketContext } from "./SocketContext";
-import axios from "axios";
+import api from "../config.js";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const useSendMessage = () => {
         };
         addMessage(userMessage);
 
-        const botRes = await axios.post("/api/chatbot", { message: content });
+        const botRes = await api.post("/api/chatbot", { message: content });
         const botReply = botRes.data.reply;
 
         const botMessage = {
@@ -42,7 +42,7 @@ const useSendMessage = () => {
       }
 
       // ✅ User-to-User message
-      const res = await axios.post(
+      const res = await api.post(
         `/api/message/send/${selectedConversation._id}`,
         { message: content }
       );

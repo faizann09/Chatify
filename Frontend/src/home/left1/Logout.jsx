@@ -1,6 +1,6 @@
 // home/left1/Logout.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../../config.js";
 import Cookies from "js-cookie";
 import LogoutIcon from '@mui/icons-material/Logout';
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ export default function Logout() {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      await axios.post("/api/user/logout");
+      await api.post("/api/user/logout");
       localStorage.removeItem("messenger");
       Cookies.remove("jwt");
       toast.success("Logout Successful");

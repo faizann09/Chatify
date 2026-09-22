@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import axios from "axios";
+import api from "../config.js";
 
 export default function useGetAllUsers() {
   const [allUsers, setAllUsers] = useState([]);
@@ -13,7 +13,7 @@ export default function useGetAllUsers() {
         const token = Cookies.get("jwt");
         console.log("JWT Token:", token);
 
-        const response = await axios.get("/api/user/getUserProfile", {
+        const response = await api.get("/api/user/getUserProfile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -28,11 +28,12 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
-    const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5002";
+    const backendURL = import.meta.env.VITE_BACKEND_URL.replace(/\/$/, "");
 
     console.log("🔌 Connecting to:", backendURL);
 
     const newSocket = io(backendURL, {
+      withCredentials: true,
       query: { userId: authUser.user._id },
       transports: ["websocket"],
       reconnection: true,

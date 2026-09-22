@@ -3,6 +3,7 @@ import { IoSend } from "react-icons/io5";
 import useSendMessage from "../../context/useSendMessage.js";
 import { useSocketContext } from "../../context/SocketContext.jsx";
 import useConversation from "../../stateManage/useConversation.js";
+import { API_BASE_URL } from "../../config.js";
 
 export default function Type() {
   const [message, setMessage] = useState("");
@@ -28,9 +29,10 @@ export default function Type() {
       const userMsg = trimmed.replace("/bot", "").trim();
 
       try {
-        const res = await fetch("/api/chatbot", {
+        const res = await fetch(`${API_BASE_URL}/api/chatbot`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({ message: userMsg }),
         });
 

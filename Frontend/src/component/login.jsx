@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../config.js";
 import { useAuth } from "../context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ export default function Login() {
             password: data.password,
 
         };
-        axios.post("/api/user/login", userInfo)
+        api.post("/api/user/login", userInfo)
             .then((response) => {
                 console.log(response.data);
                 if (response.data) {

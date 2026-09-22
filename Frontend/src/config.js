@@ -1,4 +1,10 @@
-export const BASE_URL =
-  import.meta.env.VITE_NODE_ENV === "production"
-    ? "https://chatify-tihl.onrender.com"
-    : "http://localhost:4001";
+import axios from "axios";
+
+export const API_BASE_URL = import.meta.env.VITE_BACKEND_URL.replace(/\/$/, "");
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true,
+});
+
+export default api;

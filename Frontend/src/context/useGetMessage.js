@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useConversation from "../stateManage/useConversation.js";
-import axios from "axios";
+import api from "../config.js";
 
 const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const useGetMessage = () => {
       try {
         const mappedId = convoId === "grok-bot" ? "000000000000000000000001" : convoId;
 
-        const response = await axios.get(`/api/message/get/${mappedId}`);
+        const response = await api.get(`/api/message/get/${mappedId}`);
 
         const messages = Array.isArray(response.data)
           ? response.data
